@@ -15,15 +15,15 @@ function startNewGame() {
   document.onkeypress = function (event) {
     console.log(event.key);
     hideInstructions();
-    if (guessedLetters.indexOf(event.key) == -1 && guessCount > 0) {
+    if (guessedLetters.indexOf(event.key) == -1 && guessCount >= 0) {
       updateCurrentWord(event.key);
       changeGuessCount();
       updateGuessedLetters(event.key);
       checkforWin();
     }
-    if (guessCount <= 0) {
+    if (guessCount < 0) {
       if (winCount > 3) {
-        document.getElementById("game-space").innerHTML = "Wow good run!! Reload page to play again";
+        document.getElementById("game-space").innerHTML = "Wow! Good run!! Reload page to play again";
       } else {
         document.getElementById("game-space").innerHTML = "You lose. Reload page to play again";
       }
