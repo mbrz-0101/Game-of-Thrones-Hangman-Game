@@ -5,34 +5,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
   <title>Hangman</title>
 </head>
 
 <body onload="startNewGame();">
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      <h1>Game of Thrones Hangman</h1>
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-sm-0 col-md-3 col-lg-4"></div>
+      <div class="col-sm-12 col-md-6 col-lg-4" id="banner">
+        <h1>Hangman</h1>
+      </div>
+      <div class="col-sm-0 col-md-3 col-lg-4"></div>
+
     </div>
-  </div>
-  <div class="row" id="main-content">
-    <div class="col-sm-0 col-md-3 col-lg-4"></div>
-    <div class="col-sm-6 col-md-3 col-lg-2">
-      <img src="https://placehold.it/100x100">
+
+    <div class="row" id="main-content">
+
+      <div class="col-sm-0 col-md-3 col-lg-4"></div>
+      <div class="col-sm-6 col-md-3 col-lg-2" id="img-section">
+        <img src="https://placehold.it/200x200">
+      </div>
+      <div class="col-sm-6 col-md-3 col-lg-2 text-center" id="game-space">
+        <div id="instructions-container">
+          <h3 id="instructions">Press any key to get started!</h3>
+        </div>
+        <h4>Wins</h4>
+        <p id="win-count">-1</p>
+        <h4>Current Word</h4>
+        <p id="current-word"> </p>
+        <h4>Number of Guesses Remaining</h4>
+        <p id="guess-count"></p>
+        <h4>Letters Already Guessed</h4>
+        <p id="guessed-letters"></p>
+      </div>
+      <div class="col-sm-0 col-md-3 col-lg-4"></div>
+
     </div>
-    <div class="col-sm-6 col-md-3 col-lg-2 text-center" id="game-space">
-      <h3 id="instructions">Press any key to get started!</h3>
-      <h4>Wins</h4>
-      <p id="win-count">-1</p>
-      <h4>Current Word</h4>
-      <p id="current-word"> </p>
-      <h4>Number of Guesses Remaining</h4>
-      <p id="guess-count"></p>
-      <h4>Letters Already Guessed</h4>
-      <p id="guessed-letters"></p>
-    </div>
-    <div class="col-sm-0 col-md-3 col-lg-4"></div>
+
   </div>
 
   <script src="assets/javascript/hangman-game.js"></script>

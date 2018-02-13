@@ -1,0 +1,28 @@
+body {
+  background-image: url("../../assets/images/ravenna_@2X.png");
+  color: white;
+  font-family: 'MedievalSharp', cursive;
+}
+h1 {
+  color: white;
+  padding-top: 60px;
+  font-size: 6em;
+  text-align: center;
+  transform: rotate(-30deg);
+}
+#banner {
+  height: 250px;
+  background-image: url("../../assets/images/got-banner.jpg");
+  background-size: cover;
+  margin-bottom: 10px;
+}
+#instructions-container {
+  height: 100px;
+}
+#instructions {
+  border: 5px dotted white;
+}
+#img-section img {
+  padding-top: 50%;
+  padding-left: 10%;
+}

@@ -1,10 +1,10 @@
 function startNewGame() {
-  let currentWordChoices = ["dragon", "tyrion", "jamie", "cersi", "hodor", "bran", "arya", "lannister", "sansa", "eddard"];
+  let wordChoices = ["dragon", "tyrion", "jamie", "cersi", "hodor", "bran", "arya", "lannister", "sansa", "eddard", "greyjoy", "stark", "varys", "tyrell", "tommen", "joffrey", "targaryen", "danaeris", "littlefinger", "winter", "blackwater", "ygritte", "dorne", "westoros", "whatisdeadmayneverdie", "greyworm"];
   let winCount = parseInt(document.getElementById("win-count").innerHTML) + 1;
   let guessCount = 13;
   let guessedLetters = Array(13);
   let guessedLettersCounter = 0;
-  let wordToGuess = currentWordChoices[Math.floor(Math.random() * currentWordChoices.length)];
+  let wordToGuess = wordChoices[Math.floor(Math.random() * wordChoices.length)];
   let currentWordArray = Array(wordToGuess.length).fill("_");
 
   document.getElementById("current-word").innerHTML = currentWordArray.join(" ");
@@ -17,11 +17,11 @@ function startNewGame() {
     hideInstructions();
     if (guessedLetters.indexOf(event.key) == -1 && guessCount >= 0) {
       updateCurrentWord(event.key);
-      changeGuessCount();
+      changeGuessCount(event.key);
       updateGuessedLetters(event.key);
       checkforWin();
     }
-    if (guessCount < 0) {
+    if (guessCount <= 0) {
       if (winCount > 3) {
         document.getElementById("game-space").innerHTML = "Wow! Good run!! Reload page to play again";
       } else {
@@ -31,7 +31,8 @@ function startNewGame() {
   };
 
   function hideInstructions() {
-    document.getElementById("instructions").style.color = "white";
+    document.getElementById("instructions").style.visibility = "hidden";
+    document.getElementById("instructions").style.visibility = "hidden";
   }
 
   function changeWinCount() {
@@ -48,9 +49,11 @@ function startNewGame() {
     }
   }
 
-  function changeGuessCount() {
-    guessCount--;
-    document.getElementById("guess-count").innerHTML = guessCount;
+  function changeGuessCount(key) {
+    if (wordToGuess.indexOf(key) < 0) {
+      guessCount--;
+      document.getElementById("guess-count").innerHTML = guessCount;
+    }
   }
 
   function updateGuessedLetters(key) {
@@ -61,8 +64,8 @@ function startNewGame() {
 
   function checkforWin() {
     if (currentWordArray.indexOf("_") == -1) {
-      document.getElementById("instructions").style.color = "black";
-      document.getElementById("instructions").innerHTML = "You got it! Good job! Here's your next word...";
+      document.getElementById("instructions").style.visibility = "visible";
+      document.getElementById("instructions").innerHTML = "Well done!! On to the next...";
       startNewGame();
     }
   }
