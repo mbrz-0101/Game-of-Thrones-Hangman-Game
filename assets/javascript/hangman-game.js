@@ -1,5 +1,5 @@
 function startNewGame() {
-  let wordChoices = ["dragon", "tyrion", "jamie", "cersi", "hodor", "bran", "arya", "lannister", "sansa", "eddard", "greyjoy", "stark", "varys", "tyrell", "tommen", "joffrey", "targaryen", "danaeris", "littlefinger", "winter", "blackwater", "ygritte", "dorne", "westoros", "whatisdeadmayneverdie", "greyworm"];
+  let wordChoices = ["dragon", "tyrion", "jamie", "cersi", "hodor", "bran", "arya", "lannister", "sansa", "eddard", "greyjoy", "stark", "varys", "tyrell", "tommen", "joffrey", "targaryen", "danaeris", "littlefinger", "winter", "blackwater", "ygritte", "dorne", "westoros", "whatisdeadmayneverdie", "greyworm", ""];
   let winCount = parseInt(document.getElementById("win-count").innerHTML) + 1;
   let guessCount = 13;
   let guessedLetters = Array(13);
@@ -11,6 +11,15 @@ function startNewGame() {
   document.getElementById("guess-count").innerHTML = guessCount;
   document.getElementById("win-count").innerHTML = winCount;
   document.getElementById("guessed-letters").innerHTML = guessedLetters.join(" ");
+
+  if (winCount > 0) {
+    let audio = document.createElement("audio");
+    audio.src = "assets/audio/got-themesong.mp3";
+
+    audio.addEventListener("canplaythrough", function () {
+      audio.play();
+    }, false);
+  }
 
   document.onkeypress = function (event) {
     console.log(event.key);
