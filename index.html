@@ -5,17 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Noose Favicon -->
   <link rel="shortcut icon" href="assets/images/noose.png">
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+  <!-- Personal CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
   <title>Hangman</title>
 </head>
 
+<!-- Starts game function on page load -->
 <body onload="startNewGame();">
   <div class="container-fluid">
 
+    <!-- Banner row. Includes GoT picture and Hangman heading -->
     <div class="row">
 
       <div class="col-sm-0 col-md-3 col-lg-4"></div>
@@ -26,12 +32,15 @@
 
     </div>
 
+    <!-- Start of main content, includes house banners and game space -->
     <div class="row" id="main-content">
 
       <div class="col-sm-0 col-md-3 col-lg-4"></div>
       <div class="col-sm-6 col-md-3 col-lg-2" id="img-section">
         <img src="https://placehold.it/200x200" id="house-picture">
       </div>
+
+      <!-- Game space - this is what is being affected by game script -->
       <div class="col-sm-6 col-md-3 col-lg-2 text-center" id="game-space">
         <div id="instructions-container">
           <h3 id="instructions">Press any key to get started!</h3>
@@ -51,6 +60,7 @@
 
   </div>
 
+  <!-- Game script -->
   <script src="assets/javascript/hangman-game.js"></script>
 </body>
 
