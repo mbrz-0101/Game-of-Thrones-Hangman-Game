@@ -7,38 +7,6 @@ function startNewGame() {
   let wordToGuess = wordChoices[Math.floor(Math.random() * wordChoices.length)];
   let currentWordArray = Array(wordToGuess.length).fill("_");
 
-  document.getElementById("current-word").innerHTML = currentWordArray.join(" ");
-  document.getElementById("guess-count").innerHTML = guessCount;
-  document.getElementById("win-count").innerHTML = winCount;
-  document.getElementById("guessed-letters").innerHTML = guessedLetters.join(" ");
-
-  if (winCount > 0) {
-    let audio = document.createElement("audio");
-    audio.src = "assets/audio/got-themesong.mp3";
-
-    audio.addEventListener("canplaythrough", function () {
-      audio.play();
-    }, false);
-  }
-
-  document.onkeypress = function (event) {
-    console.log(event.key);
-    hideInstructions();
-    if (guessedLetters.indexOf(event.key) == -1 && guessCount >= 0) {
-      updateCurrentWord(event.key);
-      changeGuessCount(event.key);
-      updateGuessedLetters(event.key);
-      checkforWin();
-    }
-    if (guessCount <= 0) {
-      if (winCount > 3) {
-        document.getElementById("game-space").innerHTML = "Wow! Good run!! Reload page to play again";
-      } else {
-        document.getElementById("game-space").innerHTML = "You lose. Reload page to play again";
-      }
-    }
-  };
-
   function hideInstructions() {
     document.getElementById("instructions").style.visibility = "hidden";
     document.getElementById("instructions").style.visibility = "hidden";
@@ -78,6 +46,37 @@ function startNewGame() {
       startNewGame();
     }
   }
+
+  document.getElementById("current-word").innerHTML = currentWordArray.join(" ");
+  document.getElementById("guess-count").innerHTML = guessCount;
+  document.getElementById("win-count").innerHTML = winCount;
+  document.getElementById("guessed-letters").innerHTML = guessedLetters.join(" ");
+
+  if (winCount > 0) {
+    let audio = document.createElement("audio");
+    audio.src = "assets/audio/got-themesong.mp3";
+
+    audio.addEventListener("canplaythrough", function () {
+      audio.play();
+    }, false);
+  }
+
+  document.onkeypress = function (event) {
+    console.log(event.key);
+    hideInstructions();
+    if (guessedLetters.indexOf(event.key) == -1 && guessCount >= 0) {
+      updateCurrentWord(event.key);
+      changeGuessCount(event.key);
+      updateGuessedLetters(event.key);
+      checkforWin();
+    }
+    if (guessCount <= 0 && winCount > 3) {
+      document.getElementById("game-space").innerHTML = "Wow! Good run!! Reload page to play again";
+    } else if (guessCount <= 0) {
+      document.getElementById("game-space").innerHTML = "You lose. Reload page to play again";
+    }
+  }
 }
+
 
 
