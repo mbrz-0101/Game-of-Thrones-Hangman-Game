@@ -20,45 +20,48 @@ function startNewGame() {
   // Creates array of underscores to be displayed in the gamespace. This is a placeholder while the user guesses letters
   let currentWordArray = Array(wordToGuess.length).fill("_");
 
-  // Hides instructions
-  function hideInstructions() {
-    document.getElementById("instructions").style.visibility = "hidden";
-    document.getElementById("instructions").style.visibility = "hidden";
-  }
+  // Declares hangmanGame with methods that are called later to exectute the game
+  const hangmanGame = {
 
-  // Changes underscore placeholder values in the currentWordArray to the value keyed by the user
-  function updateCurrentWord(key) {
-    for (var i = 0; i < wordToGuess.length; i++) {
-      if (key == wordToGuess[i]) {
-        currentWordArray[i] = key;
-        document.getElementById("current-word").innerHTML = currentWordArray.join(" ");
+    // Hides instructions
+    hideInstructions: function() {
+      document.getElementById("instructions").style.visibility = "hidden";
+    },
+
+    // Changes underscore placeholder values in the currentWordArray to the value keyed by the user
+    updateCurrentWord: function updateCurrentWord(key) {
+      for (var i = 0; i < wordToGuess.length; i++) {
+        if (key == wordToGuess[i]) {
+          currentWordArray[i] = key;
+          document.getElementById("current-word").innerHTML = currentWordArray.join(" ");
+        }
+      }
+    },
+
+    // If the user guesses incorrectly, this decrements the number remaining guesses
+    changeGuessCount: function(key) {
+      if (wordToGuess.indexOf(key) < 0) {
+        guessCount--;
+        document.getElementById("guess-count").innerHTML = guessCount;
+      }
+    },
+
+    // Appends and logs array of letters that the user has already guessed.
+    updateGuessedLetters: function(key) {
+      guessedLetters[guessedLettersCounter] = key;
+      guessedLettersCounter++;
+      document.getElementById("guessed-letters").innerHTML = guessedLetters.join(" ");
+    },
+      
+    // Checks for win - i.e. if all underscores have been replaced in currentWordArray
+    checkforWin: function() {
+      if (currentWordArray.indexOf("_") == -1) {
+        document.getElementById("instructions").style.visibility = "visible";
+        document.getElementById("instructions").innerHTML = "Well done!! On to the next...";
+        startNewGame();
       }
     }
-  }
-
-  // If the user guesses incorrectly, this decrements the number remaining guesses
-  function changeGuessCount(key) {
-    if (wordToGuess.indexOf(key) < 0) {
-      guessCount--;
-      document.getElementById("guess-count").innerHTML = guessCount;
-    }
-  }
-
-  // Appends and logs array of letters that the user has already guessed.
-  function updateGuessedLetters(key) {
-    guessedLetters[guessedLettersCounter] = key;
-    guessedLettersCounter++;
-    document.getElementById("guessed-letters").innerHTML = guessedLetters.join(" ");
-  }
-
-  // Checks for win - i.e. if all underscores have been replaced in currentWordArray
-  function checkforWin() {
-    if (currentWordArray.indexOf("_") == -1) {
-      document.getElementById("instructions").style.visibility = "visible";
-      document.getElementById("instructions").innerHTML = "Well done!! On to the next...";
-      startNewGame();
-    }
-  }
+  };
 
   // Changes HTML to show updated currentWordArray, number of guesses left, number of wins, what letters they have guessed, and the random house banner picture
   document.getElementById("current-word").innerHTML = currentWordArray.join(" ");
@@ -79,12 +82,12 @@ function startNewGame() {
 
   // On any key press, this hides instructions. Then if they have not guessed the letter, and have guesses left to use, it executes the 3 main functions then checks for the win condition.
   document.onkeypress = function (event) {
-    hideInstructions();
+    hangmanGame.hideInstructions();
     if (guessedLetters.indexOf(event.key) == -1 && guessCount >= 0) {
-      updateCurrentWord(event.key);
-      changeGuessCount(event.key);
-      updateGuessedLetters(event.key);
-      checkforWin();
+      hangmanGame.updateCurrentWord(event.key);
+      hangmanGame.changeGuessCount(event.key);
+      hangmanGame.updateGuessedLetters(event.key);
+      hangmanGame.checkforWin();
     }
 
     // If the user has no guesses left, this will show one of two final messages based on how many games they won
