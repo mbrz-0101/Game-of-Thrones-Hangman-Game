@@ -24,7 +24,7 @@ function startNewGame() {
   const hangmanGame = {
 
     // Hides instructions
-    hideInstructions: function() {
+    hideInstructions: function () {
       document.getElementById("instructions").style.visibility = "hidden";
     },
 
@@ -39,7 +39,7 @@ function startNewGame() {
     },
 
     // If the user guesses incorrectly, this decrements the number remaining guesses
-    changeGuessCount: function(key) {
+    changeGuessCount: function (key) {
       if (wordToGuess.indexOf(key) < 0) {
         guessCount--;
         document.getElementById("guess-count").innerHTML = guessCount;
@@ -47,14 +47,14 @@ function startNewGame() {
     },
 
     // Appends and logs array of letters that the user has already guessed.
-    updateGuessedLetters: function(key) {
+    updateGuessedLetters: function (key) {
       guessedLetters[guessedLettersCounter] = key;
       guessedLettersCounter++;
       document.getElementById("guessed-letters").innerHTML = guessedLetters.join(" ");
     },
-      
+
     // Checks for win - i.e. if all underscores have been replaced in currentWordArray
-    checkforWin: function() {
+    checkforWin: function () {
       if (currentWordArray.indexOf("_") == -1) {
         document.getElementById("instructions").style.visibility = "visible";
         document.getElementById("instructions").innerHTML = "Well done!! On to the next...";
@@ -77,6 +77,9 @@ function startNewGame() {
 
     audio.addEventListener("canplaythrough", function () {
       audio.play();
+      setTimeout(function() {
+        audio.pause();
+      }, 4000);
     }, false);
   }
 
