@@ -14,7 +14,7 @@ function startNewGame() {
   let guessCount = 13;
   let guessedLetters = Array(13);
   let guessedLettersCounter = 0;
-  // Choose randome word and house banner
+  // Choose random word and house banner
   let wordToGuess = wordChoices[Math.floor(Math.random() * wordChoices.length)];
   let houseToDisplay = houseChoices[Math.floor(Math.random() * houseChoices.length)];
   // Creates array of underscores to be displayed in the gamespace. This is a placeholder while the user guesses letters
